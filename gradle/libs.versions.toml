@@ -50,7 +50,7 @@ lincheck = { module = "org.jetbrains.kotlinx:lincheck", version = "2.34" }
 mock-clock = { module = "com.statemachinesystems:mock-clock", version = "1.0" }
 
 # resilience4j-feign
-feign-core = { module = "io.github.openfeign:feign-core", version = "12.0" }
+feign-core = { module = "io.github.openfeign:feign-core", version = "13.15" }
 feign-wiremock = { module = "org.wiremock:wiremock", version = "3.13.1" }
 
 # resilience4j-kotlin
