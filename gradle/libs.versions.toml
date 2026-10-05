@@ -7,7 +7,7 @@ spring-boot3 = "3.2.0"
 spring-cloud3 = "3.1.5"
 
 spring7 = "7.0.2"
-spring-boot4 = "4.0.0"
+spring-boot4 = "4.1.1"
 spring-cloud5 = "5.0.0"
 
 [plugins]
