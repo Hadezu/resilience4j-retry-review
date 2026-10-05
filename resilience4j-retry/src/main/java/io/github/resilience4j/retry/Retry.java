@@ -735,7 +735,7 @@ public interface Retry {
             if (delay < 0) {
                 promise.completeExceptionally(t);
             } else {
-                scheduler.schedule(this, delay, TimeUnit.MILLISECONDS);
+                scheduleRetry(delay);
             }
         }
 
@@ -750,8 +750,20 @@ public interface Retry {
                     promise.completeExceptionally(e);
                 }
             } else {
-                scheduler.schedule(this, delay, TimeUnit.MILLISECONDS);
+                scheduleRetry(delay);
             }
+        }
+
+        private void scheduleRetry(long delay) {
+            scheduler.schedule(() -> {
+                try {
+                    run();
+                } catch (Throwable throwable) {
+                    // A scheduled supplier can throw before returning a stage. Complete the
+                    // caller's future, not only the scheduler's otherwise unobserved future.
+                    promise.completeExceptionally(throwable);
+                }
+            }, delay, TimeUnit.MILLISECONDS);
         }
     }
 }
