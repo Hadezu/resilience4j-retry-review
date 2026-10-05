@@ -1,6 +1,6 @@
 # Java asynchronous retry: make scheduled failures observable
 
-Status: **VERIFIED_LOCAL** (focused runner); project-native hosted CI pending. Independent open-source maintenance exercise by Ivan Matiushkin, using Codex; not client work or an upstream-approved fix.
+Status: **VERIFIED_CI_PUBLIC** — [CI run 37363332252](https://github.com/Hadezu/resilience4j-retry-review/actions/runs/37363332252), code commit `89d57091e52216fdcc7ef34ebae7c401ea34e30b`. Independent open-source maintenance exercise by Ivan Matiushkin, using Codex; not client work or an upstream-approved fix.
 
 ## Upstream and scope
 
@@ -53,6 +53,8 @@ git diff 7e3ab5252ed380b596e25240f19376a4435570b8 -- resilience4j-retry/src/main
 ```
 
 The CI job creates an unchanged baseline worktree, tests it, then copies only the new test into it and requires exactly the three pending-future failures. See [verification](docs/verification-20261005.md) for actual results and environment limits.
+
+Observed native Gradle results: baseline core 250 + retry 137 = **387 passing tests**; patched core 250 + retry 144 = **394 passing tests**, no failures/errors/skips, and retry assembly passed. The seven-case local secondary runner also passes. Other upstream modules were not included in this claim.
 
 ## Proof matrix
 

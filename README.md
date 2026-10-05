@@ -21,7 +21,7 @@ bash gradlew :resilience4j-core:test :resilience4j-retry:test :resilience4j-retr
 
 Windows users can use `gradlew.bat`; the author's local Gradle socket limitation is documented in verification. No private credentials, service account or paid infrastructure is required to run the project.
 
-**Status: VERIFIED_LOCAL (focused direct JUnit runner); native Gradle CI pending.** Do not describe this as public CI-verified until the linked verification record confirms it.
+**Status: VERIFIED_CI_PUBLIC.** [Successful native Gradle CI](https://github.com/Hadezu/resilience4j-retry-review/actions/runs/37363332252): unchanged baseline **387 tests passed**; patched core/retry **394 tests passed**, including seven new cases; assembly passed. CI also confirms the three regressions fail on upstream for the expected reason. Exact tested code commit: `89d57091e52216fdcc7ef34ebae7c401ea34e30b`. Later documentation-only commits do not change that code.
 
 This demonstrates one trace/reproduce/fix/test/handover workflow in an existing Java codebase. It does not establish years of Java employment, Spring application delivery, client references or production-scale reliability.
 

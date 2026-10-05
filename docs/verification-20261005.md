@@ -20,11 +20,28 @@ Independent local path: compiled all upstream core/retry production sources with
 - After patch: 7 tests executed, 7 passed, 0 failed.
 - No network request, artificial sleep, client data or real side effect in these tests.
 
-The first restricted local compile also reported an archive-access exception; the patched compile/run succeeded outside that filesystem restriction. Hosted CI must independently reproduce baseline and patched results using project-native tooling before VERIFIED_CI_PUBLIC.
+The first restricted local compile also reported an archive-access exception. A fresh baseline compile using the original `Retry.java` from the pinned commit, in a separate output directory and outside that filesystem restriction, then succeeded and again produced exactly 4 passing / 3 failing cases. The patched compile/run also succeeded. Hosted CI subsequently independently reproduced the baseline and patched results using project-native tooling.
 
 ## Hosted verification
 
-Pending. Workflow `.github/workflows/proof.yml` performs upstream core/retry baseline tests/build, checks the three exact regression failures on baseline and runs patched core/retry tests/build. No deploy, upstream contact, release publishing or paid AI calls.
+**SUCCESS — VERIFIED_CI_PUBLIC.** [Run 37363332252](https://github.com/Hadezu/resilience4j-retry-review/actions/runs/37363332252), tested commit `89d57091e52216fdcc7ef34ebae7c401ea34e30b`, completed `2026-10-05T19:28:42Z`.
+
+Linux GitHub-hosted runner, Temurin 21, project wrapper Gradle 9.4.1 and upstream dependency declarations. Workflow `.github/workflows/proof.yml` performs unchanged upstream core/retry tests and retry assembly, checks the three exact regression failures on baseline, then runs patched core/retry tests and retry assembly. No deploy, upstream contact, release publishing or paid AI calls.
+
+Downloaded and parsed native JUnit XML from the successful run's `java-proof-test-results` artifact:
+
+| Scope | Tests | Failures | Errors | Skips |
+|---|---:|---:|---:|---:|
+| Unchanged upstream core | 250 | 0 | 0 | 0 |
+| Unchanged upstream retry | 137 | 0 | 0 | 0 |
+| Patched core | 250 | 0 | 0 | 0 |
+| Patched retry | 144 | 0 | 0 | 0 |
+
+Baseline total: **387**. Patched total: **394**, including the seven new tests. Both assembly steps passed. The deliberate red stage confirms the expected three distinct pending-future failures; upstream's automatic test retries are accounted for. XML artifact retention is 14 days; this checked-in count summary and linked CI logs record the observation. Subsequent documentation-only commits preserve the tested production, test and workflow bytes; they do not imply a new whole-application test run.
+
+Initial run [37362774584](https://github.com/Hadezu/resilience4j-retry-review/actions/runs/37362774584) passed the unchanged upstream core/retry tests and assembly, then failed the proof workflow's own count assertion: upstream's Gradle test-retry plugin repeats the three expected failing tests, yielding 16 invocations / 12 failed invocations across 7 distinct cases. The corrected workflow checks the 7 distinct cases, the exact three failed names and their pending-future messages, with no skipped/error cases. It does not accept an arbitrary build failure as a reproduction.
+
+The original upstream Build workflow now runs only in `resilience4j/resilience4j`; its release workflow already had that guard. Dependabot configuration remains unchanged.
 
 ## Limits
 
