@@ -25,6 +25,9 @@ jobs:
           git worktree add --detach ../upstream 7e3ab5252ed380b596e25240f19376a4435570b8
           cd ../upstream
           bash gradlew :resilience4j-core:test :resilience4j-retry:test :resilience4j-retry:assemble --no-daemon --console=plain
+          mkdir -p "$GITHUB_WORKSPACE/proof-evidence/baseline"
+          cp -r resilience4j-core/build/test-results/test "$GITHUB_WORKSPACE/proof-evidence/baseline/core"
+          cp -r resilience4j-retry/build/test-results/test "$GITHUB_WORKSPACE/proof-evidence/baseline/retry"
       - name: Prove regressions fail on upstream
         shell: bash
         run: |
@@ -46,7 +49,11 @@ jobs:
               'scheduledErrorMustCompleteOriginalFutureWithoutRetry()'
           }
           actual = {case.attrib['name'] for case in root.findall('testcase') if case.find('failure') is not None}
-          assert root.attrib['tests'] == '7', root.attrib
+          # Upstream's test-retry plugin repeats failed tests. Count distinct
+          # cases, while still rejecting any unexpected failure or skip.
+          cases = root.findall('testcase')
+          assert len({case.attrib['name'] for case in cases}) == 7, root.attrib
+          assert root.attrib['skipped'] == '0' and root.attrib['errors'] == '0', root.attrib
           assert actual == expected, actual
           assert all('the caller must not remain pending' in case.find('failure').attrib.get('message', '')
                      for case in root.findall('testcase') if case.find('failure') is not None)
@@ -61,4 +68,5 @@ jobs:
           path: |
             resilience4j-core/build/test-results/test/
             resilience4j-retry/build/test-results/test/
+            proof-evidence/
           retention-days: 14
