@@ -42,7 +42,7 @@ jcache = { module = "javax.cache:cache-api", version = "1.1.0" }
 # resilience4j-commons-configuration
 apache-commons-configuration2 = { module = "org.apache.commons:commons-configuration2", version = "2.9.0" }
 apache-commons-beanutils = { module = "commons-beanutils:commons-beanutils", version = "1.9.4" }
-jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version = "2.12.3" }
+jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version = "2.22.3" }
 
 # resilience4j-core
 junit-params = { module = "pl.pragmatists:JUnitParams", version = "1.1.1" }
