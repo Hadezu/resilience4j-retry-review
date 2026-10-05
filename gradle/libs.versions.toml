@@ -40,7 +40,7 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 jcache = { module = "javax.cache:cache-api", version = "1.1.0" }
 
 # resilience4j-commons-configuration
-apache-commons-configuration2 = { module = "org.apache.commons:commons-configuration2", version = "2.9.0" }
+apache-commons-configuration2 = { module = "org.apache.commons:commons-configuration2", version = "2.15.1" }
 apache-commons-beanutils = { module = "commons-beanutils:commons-beanutils", version = "1.9.4" }
 jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version = "2.12.3" }
 
