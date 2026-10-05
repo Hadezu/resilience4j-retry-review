@@ -12,6 +12,7 @@ on:
 
 jobs:
   validation:
+    if: github.repository == 'resilience4j/resilience4j'
     name: "Gradle wrapper validation"
     runs-on: ubuntu-latest
     steps:
@@ -19,6 +20,7 @@ jobs:
       - uses: gradle/actions/wrapper-validation@v6
 
   build:
+    if: github.repository == 'resilience4j/resilience4j'
     name: "Build and publish"
     runs-on: ubuntu-latest
     permissions:

@@ -1,6 +1,7 @@
 /*
  *
  *  Copyright 2016 Robert Winkler
+ *  Modified by Ivan Matiushkin: complete the caller future on scheduled supplier failure.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
