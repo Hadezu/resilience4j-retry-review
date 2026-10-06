@@ -1,5 +1,11 @@
 # Java retry failure handling — independent proof
 
+<!-- portfolio-navigation:start -->
+[← Project index](https://github.com/Hadezu#selected-implementations) · [Improve existing software](https://work.matiushkin.com/en/services/software-improvements) · [Describe a similar task](https://work.matiushkin.com/en/contact?example=services%2Fsoftware-improvements)
+
+**Review format:** Scoped code change, baseline reproduction and regression tests. No hosted application.
+<!-- portfolio-navigation:end -->
+
 [Read the case study](CASE-STUDY.md) · [Verification](docs/verification-20261005.md) · [Upstream README](README.adoc)
 
 A scoped change to **Resilience4j**, a Java fault-tolerance library: when a scheduled retry throws before returning a completion stage, the original caller future now completes with that error instead of remaining pending.
