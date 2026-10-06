@@ -63,7 +63,7 @@ jobs:
           PY
       - name: Verify patched core and retry modules
         run: bash gradlew :resilience4j-core:test :resilience4j-retry:test :resilience4j-retry:assemble --no-daemon --console=plain
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: java-proof-test-results
