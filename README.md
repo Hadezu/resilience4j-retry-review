@@ -1,16 +1,15 @@
-# Java retry failure handling — independent proof
+# Java retry repair — make asynchronous failures observable
+
+A targeted Resilience4j change completes the caller’s future when a scheduled retry throws before returning its completion stage. Baseline reproduction and deterministic regression tests make the repair reviewable.
 
 <!-- portfolio-navigation:start -->
 [← Project index](https://github.com/Hadezu#selected-implementations) · [Improve existing software](https://work.matiushkin.com/en/services/software-improvements) · [Describe a similar task](https://work.matiushkin.com/en/contact?example=services%2Fsoftware-improvements)
 
-**Review format:** Scoped code change, baseline reproduction and regression tests. No hosted application.
 <!-- portfolio-navigation:end -->
 
 [Read the case study](CASE-STUDY.md) · [Verification](docs/verification-20261005.md) · [Upstream README](README.adoc)
 
 A scoped change to **Resilience4j**, a Java fault-tolerance library: when a scheduled retry throws before returning a completion stage, the original caller future now completes with that error instead of remaining pending.
-
-This repository is an attributed maintenance exercise by **Ivan Matiushkin**, developed with Codex. Resilience4j and its existing functionality belong to the upstream contributors. Apache-2.0 attribution and source history are retained. This work is not an upstream release, client project or production deployment.
 
 ## Inspect quickly
 
@@ -32,3 +31,13 @@ Windows users can use `gradlew.bat`; the author's local Gradle socket limitation
 This demonstrates one trace/reproduce/fix/test/handover workflow in an existing Java codebase. It does not establish years of Java employment, Spring application delivery, client references or production-scale reliability.
 
 [Portfolio](https://work.matiushkin.com/en) · [GitHub](https://github.com/Hadezu)
+
+
+**Upstream:** [Resilience4j](https://github.com/resilience4j/resilience4j), Apache-2.0. Original source history and attribution are retained.
+
+
+## Discuss a similar project
+
+I develop complete applications, integrations and focused improvements to existing software. Send the workflow you want to improve and the outcome you need; we can define the scope, delivery stages and acceptance checks together.
+
+**[Discuss your project](https://work.matiushkin.com/en/contact)** · [More implementations](https://github.com/Hadezu) · [Project context and verification scope](PRESENTATION-SCOPE.md)

@@ -1,6 +1,6 @@
 # Java asynchronous retry: make scheduled failures observable
 
-Status: **VERIFIED_CI_PUBLIC** — [CI run 37363332252](https://github.com/Hadezu/resilience4j-retry-review/actions/runs/37363332252), code commit `89d57091e52216fdcc7ef34ebae7c401ea34e30b`. Independent open-source maintenance exercise by Ivan Matiushkin, using Codex; not client work or an upstream-approved fix.
+**Verified against the baseline and patched modules:** [CI run 37363332252](https://github.com/Hadezu/resilience4j-retry-review/actions/runs/37363332252), code commit `89d57091e52216fdcc7ef34ebae7c401ea34e30b`. The change makes scheduled failures observable to the original caller.
 
 ## Upstream and scope
 
